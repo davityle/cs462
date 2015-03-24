@@ -21,10 +21,11 @@ A first ruleset for the Quickstart
   rule hello_world is active {
     select when echo hello
     send_directive("say") with
-      something = "Hi";
+      something = "Hello World";
   }
-  rule good_morning {
-    select when web pageview url re#exampley.com#
-    notify("Welcome!", "Good morning!")
-  } 
+  rule message is active {
+    select when echo message input "(.*)" setting(m)
+    send_directive("say") with
+      something = m;
+  }
 }
