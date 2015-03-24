@@ -23,5 +23,8 @@ A first ruleset for the Quickstart
     send_directive("say") with
       something = "Hello World";
   }
- 
+  rule good_morning {
+    select when web pageview url re#exampley.com#
+    notify("Welcome!", "Good morning!")
+  } 
 }
