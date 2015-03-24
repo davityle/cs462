@@ -21,7 +21,7 @@ A first ruleset for the Quickstart
   rule hello_world is active {
     select when echo hello
     send_directive("say") with
-      something = "Hello World";
+      something = "Hi";
   }
   rule good_morning {
     select when web pageview url re#exampley.com#
