@@ -18,17 +18,8 @@ ruleset song_store {
       songs
     };
     secular_music = function(){
-      query_results = ent:entSongs.query([], { 
-       'requires' : '$and',
-       'conditions' : [
-          { 
-           'operator' : '$regex',
-           'value' : "~(.*god.*)" 
-        }
-      ]},
-      "return_values"
-      );
-      query_results
+      songs = ent:entSongs
+      songs.filter(function(x){ !my_str.match(re/god/)})
     };
   }
 
