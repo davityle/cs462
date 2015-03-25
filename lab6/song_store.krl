@@ -10,8 +10,7 @@ ruleset song_store {
 //  }
 
     songs = function(){
-      query_results = ent:entSongs.query([], { }, "return_values");
-      send_raw
+      ent:entSongs
     };
 //    secular_music = function(){
 //    }
