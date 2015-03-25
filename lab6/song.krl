@@ -4,11 +4,13 @@ ruleset see_songs {
   }
 
   rule songs is active {
-    select when echo message input "(.*)" setting(m) 
-    if event:attr("msg_type").match("song")
-    then
+    select when echo message msg_type "song" input re#(.*)# setting(m)
       send_directive("sing") with 
         song = m;
+    fired {
+      log "raising sung event";
+      raise explicit event sung
+    }
   }
   rule find_hymn is active {
     select when explicit sung song "(.*god.*)" 
