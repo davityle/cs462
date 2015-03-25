@@ -2,6 +2,7 @@ ruleset song_store {
    meta {
     logging on
     provides songs
+    sharing on
   }
 
   global {
