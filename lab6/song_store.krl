@@ -34,7 +34,7 @@ ruleset song_store {
     select when explicit sung song re#(.*)# setting(m)
     pre {
       songs = ent:entSongs || [];
-      new_array = songs.union(m)
+      new_array = songs.union({ 'x' : m})
     }
     always {
       set ent:entSongs new_array if (not songs.has(m));
