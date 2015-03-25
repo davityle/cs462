@@ -6,5 +6,9 @@ ruleset see_songs {
       send_directive("sing") with 
         song = m;
   }
+  rule find_hymn is active {
+    select when explicit sung 
+       raise explicit event explicit found_hymn
+  }
 }
 
