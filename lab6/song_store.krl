@@ -10,7 +10,8 @@ ruleset song_store {
 //  }
 
     songs = function(){
-      ent:entSongs
+      songs = ent:entSongs
+      songs
     };
 //    secular_music = function(){
 //    }
@@ -24,7 +25,8 @@ ruleset song_store {
     }
     always {
       log "storing new ent songs";
-      set ent:entSongs new_array if (not songs.has(m))
+      set ent:entSongs new_array if (not songs.has(m));
+      log "sending " + ent:entSongs;
     }
   }
   rule collect_hymns is active {
@@ -45,3 +47,4 @@ ruleset song_store {
     }
   }
 }
+
