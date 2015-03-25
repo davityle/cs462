@@ -1,20 +1,24 @@
 ruleset song_store {
    meta {
     logging on
-    provides songs
+    provides songs, hymns, secular_music
     sharing on
   }
 
   global {
-//  songs = function() {
-//  }
+    hymns = function() {
+      songs = ent:entHymns
+      songs
+    };
 
     songs = function(){
       songs = ent:entSongs
       songs
     };
-//    secular_music = function(){
-//    }
+    secular_music = function(){
+      songs = ent:entSongs
+      songs
+    };
   }
 
   rule collect_songs is active {
@@ -24,16 +28,15 @@ ruleset song_store {
       new_array = songs.union(m)
     }
     always {
-      log "storing new ent songs";
       set ent:entSongs new_array if (not songs.has(m));
-      log "sending " + ent:entSongs;
     }
   }
   rule collect_hymns is active {
     select when explicit found_hymn song re#(.*)# setting(m)
     pre {
       hymns = ent:entHymns || [];
-      new_array = hymns.union({ "hymn" : m, "time" : time:now()})
+      //x = { "hymn" : m, "time" : time:now()}
+      new_array = hymns.union(m)
     }
     always {
       set ent:entHymns new_array if (not hymns.has(m))
