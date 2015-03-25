@@ -21,7 +21,7 @@ ruleset song_store {
     select when explicit sung song re#(.*)# setting(m)
     pre {
       songs = ent:entSongs || [];
-      new_array = songs.union({ "song" : m, "time" : time:now()})
+      new_array = songs.union(m)
     }
     always {
       log "storing new ent songs";
