@@ -23,7 +23,7 @@ ruleset song_store {
        'conditions' : [
           { 
            'operator' : '$regex',
-           'value' : "^(.*god.*)" 
+           'value' : "~(.*god.*)" 
         }
       ]},
       "return_values"
@@ -36,17 +36,16 @@ ruleset song_store {
     select when explicit sung song re#(.*)# setting(m)
     pre {
       songs = ent:entSongs || [];
-      new_array = songs.union({ 'songs' : m})
+      new_array = songs.union(m)
     }
     always {
-      set ent:entSongs new_array;
+      set ent:entSongs new_array if (not songs.has(m));
     }
   }
   rule collect_hymns is active {
     select when explicit found_hymn song re#(.*)# setting(m)
     pre {
       hymns = ent:entHymns || [];
-      //x = { "hymn" : m, "time" : time:now()}
       new_array = hymns.union(m)
     }
     always {
