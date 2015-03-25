@@ -16,8 +16,17 @@ ruleset song_store {
       songs
     };
     secular_music = function(){
-      songs = ent:entSongs
-      songs
+      query_results = ent:entSongs.query([], { 
+       'requires' : '$and',
+       'conditions' : [
+          { 
+           'operator' : '$regex',
+           'value' : "^(.*god.*)" 
+        }
+      ]},
+      "return_values"
+      );
+      query_results
     };
   }
 
