@@ -1,5 +1,7 @@
 ruleset song_store {
    meta {
+    name "Song Store"
+    author "Tyler Davis"
     logging on
     provides songs, hymns, secular_music
     sharing on
@@ -34,10 +36,10 @@ ruleset song_store {
     select when explicit sung song re#(.*)# setting(m)
     pre {
       songs = ent:entSongs || [];
-      new_array = songs.union({ 'x' : m})
+      new_array = songs.union({ 'songs' : m})
     }
     always {
-      set ent:entSongs new_array if (not songs.has({ 'x' : m}));
+      set ent:entSongs new_array;
     }
   }
   rule collect_hymns is active {
