@@ -7,11 +7,12 @@ ruleset song_store {
 //  songs = function() {
 //  }
 
-//  hymns = function(){
-//  }
-
-//  secular_music = function(){
-//  }
+    songs = function(){
+      query_results = ent:entSongs.query([], { }, "return_values");
+      send_raw
+    };
+//    secular_music = function(){
+//    }
   }
 
   rule collect_songs is active {
