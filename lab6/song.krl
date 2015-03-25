@@ -9,7 +9,7 @@ ruleset see_songs {
         song = m;
     fired {
       log "raising sung event";
-      raise explicit event sung
+      raise explicit event sung with song = m
     }
   }
   rule find_hymn is active {
