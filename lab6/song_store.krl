@@ -23,6 +23,7 @@ ruleset song_store {
       new_array = songs.union({ "song" : m, "time" : time:now()})
     }
     always {
+      log "storing new ent songs";
       set ent:entSongs new_array if (not songs.has(m))
     }
   }
