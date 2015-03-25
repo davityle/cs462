@@ -19,7 +19,7 @@ ruleset song_store {
     };
     secular_music = function(){
       songs = ent:entSongs
-      songs.filter(function(x){ !x.match(re/god/)})
+      songs.filter(function(x){ x.match(re/^(*god*)/);})
     };
   }
 
