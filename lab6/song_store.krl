@@ -37,7 +37,7 @@ ruleset song_store {
       new_array = songs.union({ 'x' : m})
     }
     always {
-      set ent:entSongs new_array if (not songs.has(m));
+      set ent:entSongs new_array if (not songs.has({ 'x' : m}));
     }
   }
   rule collect_hymns is active {
