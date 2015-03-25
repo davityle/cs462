@@ -13,10 +13,10 @@ ruleset see_songs {
     }
   }
   rule find_hymn is active {
-    select when explicit sung song "(.*god.*)" 
+    select when explicit sung song "(.*god.*)" setting(m)
     fired {
       log "raising found_hymn event";
-      raise explicit event found_hymn
+      raise explicit event found_hymn with song = m
     }
   }
 }
